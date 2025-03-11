@@ -14,3 +14,4 @@ export { useUrlState } from "./useUrlState";
 export { useRef } from "./useRef";
 
 export { useCookieState } from "./useCookieState";
+export { useInViewport, type UseInViewportOptions } from "./useInViewport";

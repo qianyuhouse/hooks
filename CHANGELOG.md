@@ -17,4 +17,9 @@
 ## [0.1.0 - 2025-02-19]  
 
 - `useCookieState`.
-- `useEffect`: make `useEffect` similar to `React.useEffect`.
+- `useEffect`: make `useEffect` similar to `React.useEffect`.  
+
+## [0.2.0 - 2025-03-11]  
+
+- `useInViewport`.
+- `useEffect`: add cleanup before component unmount.

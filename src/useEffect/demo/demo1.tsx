@@ -18,9 +18,7 @@ export default defineComponent({
     return () => {
       return (
         <div>
-          <pre>
-            count: {state.value} {Math.random()}
-          </pre>
+          <pre>count: {state.value}</pre>
           <p>
             <button type="button" onClick={() => setState((pre) => pre + 1)}>
               count + 1

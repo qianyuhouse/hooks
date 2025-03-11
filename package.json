@@ -1,6 +1,6 @@
 {
   "name": "@vue-widget/hooks",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "private": false,
   "description": "hooks from react to vue",
   "main": "lib/index.js",
@@ -87,6 +87,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
+    "intersection-observer": "^0.12.2",
     "qs": "^6.14.0"
   }
 }

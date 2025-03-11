@@ -15,12 +15,13 @@ export function sidebarReference(): DefaultTheme.SidebarItem[] {
         },
         {
           text: "Effect",
-          items: [
-            { text: "useEffect", link: "useEffect/index.html" }
-          ]
+          items: [{ text: "useEffect", link: "useEffect/index.html" }]
+        },
+        {
+          text: "Dom",
+          items: [{ text: "useInViewport", link: "useInViewport/index.html" }]
         }
       ]
-    },
-    
+    }
   ];
 }

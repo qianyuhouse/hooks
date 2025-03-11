@@ -4,25 +4,19 @@ import {
   watch,
   type WatchSource,
   onUpdated,
-  onBeforeMount,
-  nextTick,
-  onRenderTracked,
-  onRenderTriggered,
-  getCurrentInstance,
-  getCurrentScope
+  onBeforeUnmount
 } from "vue";
 
 type CleanUp = () => void;
 
-export type EffctCallback<V = any, OV = any> = (
+export type EffectCallback<V = any, OV = any> = (
   value: V,
   oldValue: OV
 ) => CleanUp | void;
 
 export type EffectType = "useEffect" | "useLayoutEffect";
-
 export function createEffect(type: EffectType) {
-  return (callback: EffctCallback, deps: WatchSource[], immediate = true) => {
+  return (callback: EffectCallback, deps: WatchSource[]) => {
     let lastEffects: CleanUp | null = null;
     function cleanup() {
       typeof lastEffects === "function" && lastEffects();
@@ -32,15 +26,12 @@ export function createEffect(type: EffectType) {
       lastEffects = callback(newValue, oldValue) || null;
     }
 
-    deps.length && watch(deps, watchCallback);
+    deps.length && watch(deps, watchCallback, { immediate: true });
 
     if (!deps.length) {
       onUpdated(() => {
         watchCallback([], []);
       });
-    }
-
-    if (immediate) {
       onMounted(() => {
         const args: [any, any] = [
           deps.length
@@ -51,5 +42,7 @@ export function createEffect(type: EffectType) {
         watchCallback(...args);
       });
     }
+
+    onBeforeUnmount(cleanup);
   };
 }

@@ -18,10 +18,6 @@ nav:
 
 <code src="./demo/demo2.tsx" />
 
-### 与 useLayoutEffect 的区别
-
-<code src="./demo/demo3/index.tsx" />
-
 ## API
 
 ```typescript  
