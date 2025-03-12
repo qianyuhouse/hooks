@@ -19,7 +19,11 @@
 - `useCookieState`.
 - `useEffect`: make `useEffect` similar to `React.useEffect`.  
 
-## [0.2.0 - 2025-03-11]  
+## [0.2.1 - 2025-03-11]  
 
 - `useInViewport`.
-- `useEffect`: add cleanup before component unmount.
+- `useEffect`: add cleanup before component unmount.  
+
+## [0.3.0 - 2025-03-12]  
+
+- `useSize`. 

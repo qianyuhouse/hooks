@@ -19,7 +19,10 @@ export function sidebarReference(): DefaultTheme.SidebarItem[] {
         },
         {
           text: "Dom",
-          items: [{ text: "useInViewport", link: "useInViewport/index.html" }]
+          items: [
+            { text: "useInViewport", link: "useInViewport/index.html" },
+            { text: "useSize", link: "useSize/index.html" }
+          ]
         }
       ]
     }

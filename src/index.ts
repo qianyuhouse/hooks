@@ -15,3 +15,4 @@ export { useRef } from "./useRef";
 
 export { useCookieState } from "./useCookieState";
 export { useInViewport, type UseInViewportOptions } from "./useInViewport";
+export { useSize } from "./useSize";
