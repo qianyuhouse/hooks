@@ -35,13 +35,7 @@ export function createEffect(type: EffectType) {
           isMounted && watchCallback([], []);
         });
       onMounted(() => {
-        const args: [any, any] = [
-          deps?.length
-            ? deps.map((cb) => unref(typeof cb === "function" ? cb() : cb))
-            : [],
-          []
-        ];
-        watchCallback(...args);
+        watchCallback([], []);
         isMounted = true;
       });
     }

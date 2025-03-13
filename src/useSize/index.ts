@@ -28,7 +28,6 @@ export function useSize(
       const resizeObserver = new ResizeObserver((entries) => {
         entries.forEach((entry) => {
           const { clientWidth, clientHeight } = entry.target;
-          console.log(el, clientWidth);
           setState({ width: clientWidth, height: clientHeight });
         });
       });
