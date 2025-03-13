@@ -1,6 +1,6 @@
 {
   "name": "@vue-widget/hooks",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "private": false,
   "description": "hooks from react to vue",
   "main": "lib/index.js",

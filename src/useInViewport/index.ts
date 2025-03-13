@@ -2,10 +2,11 @@ import "intersection-observer";
 import type { BasicTarget } from "../utils/domTarget";
 import { getTargetElement } from "../utils/domTarget";
 import { useState } from "../useState";
-import { useEffect } from "../useEffect";
-import { toRef, type ComputedRef, type Ref } from "vue";
+import { toRef, unref, type ComputedRef, type Ref } from "vue";
 import useEffectWithTarget from "../utils/useEffectWithTarget";
 import { getArray } from "../utils/getArray";
+
+type UseInViewportTargetType = BasicTarget<Element> | BasicTarget<Element>[];
 
 type CallbackType = (entry: IntersectionObserverEntry) => void;
 
@@ -17,7 +18,7 @@ export interface UseInViewportOptions {
 }
 
 export function useInViewport(
-  target: BasicTarget | BasicTarget[],
+  target: Ref<UseInViewportTargetType> | UseInViewportTargetType,
   options?:
     | UseInViewportOptions
     | Ref<UseInViewportOptions>
@@ -31,7 +32,7 @@ export function useInViewport(
 
   useEffectWithTarget(
     () => {
-      const targets = getArray(target);
+      const targets = getArray(unref(target));
       const els = targets
         .map((element) => getTargetElement(element))
         .filter(Boolean);
