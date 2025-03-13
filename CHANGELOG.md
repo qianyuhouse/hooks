@@ -28,7 +28,9 @@
 
 - `useSize`.
 
-## [0.3.1 - 2025-03-13]
+## [0.3.3 - 2025-03-13]
 
+- `useSize`: change target type.  
+- `useInViewport`: change target type.  
 - `useEffect`: onUpdate called when deps is empty.  
 - `useEffectWithTarget`: make onMounted callback as a macrotask.
