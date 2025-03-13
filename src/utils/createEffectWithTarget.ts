@@ -9,6 +9,7 @@ import {
 import type { EffectType } from "./createEffect";
 import type { BasicTarget } from "./domTarget";
 import { getTargetElement } from "./domTarget";
+import { getArray } from "./getArray";
 
 type EffectWithTargetCleanUp = () => void;
 
@@ -43,7 +44,7 @@ const createEffectWithTarget = (type: EffectType) => {
 
     onUpdated(() => {
       if (!hasInitRef) return;
-      const targets = Array.isArray(target) ? target : [target];
+      const targets = getArray(target);
       const els = targets.map((item) => getTargetElement(item));
       if (isChanged) {
         unLoadRef?.();
@@ -54,14 +55,16 @@ const createEffectWithTarget = (type: EffectType) => {
       }
     });
 
-    onMounted(() => {
-      hasInitRef = true;
-      const targets = Array.isArray(target) ? target : [target];
-      const els = targets.map((item) => getTargetElement(item));
-      lastElementRef = els;
-      lastDepsRef = deps;
-      unLoadRef = effect();
-    });
+    onMounted(() =>
+      setTimeout(() => {
+        hasInitRef = true;
+        const targets = getArray(target);
+        const els = targets.map((item) => getTargetElement(item));
+        lastElementRef = els;
+        lastDepsRef = deps;
+        unLoadRef = effect();
+      })
+    );
 
     onBeforeUnmount(() => {
       unLoadRef?.();

@@ -5,6 +5,7 @@ import { useState } from "../useState";
 import { useEffect } from "../useEffect";
 import { toRef, type ComputedRef, type Ref } from "vue";
 import useEffectWithTarget from "../utils/useEffectWithTarget";
+import { getArray } from "../utils/getArray";
 
 type CallbackType = (entry: IntersectionObserverEntry) => void;
 
@@ -30,7 +31,7 @@ export function useInViewport(
 
   useEffectWithTarget(
     () => {
-      const targets = Array.isArray(target) ? target : [target];
+      const targets = getArray(target);
       const els = targets
         .map((element) => getTargetElement(element))
         .filter(Boolean);

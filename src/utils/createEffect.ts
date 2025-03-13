@@ -16,7 +16,7 @@ export type EffectCallback<V = any, OV = any> = (
 
 export type EffectType = "useEffect" | "useLayoutEffect";
 export function createEffect(type: EffectType) {
-  return (callback: EffectCallback, deps: WatchSource[]) => {
+  return (callback: EffectCallback, deps?: WatchSource[]) => {
     let lastEffects: CleanUp | null = null;
     function cleanup() {
       typeof lastEffects === "function" && lastEffects();
@@ -26,23 +26,29 @@ export function createEffect(type: EffectType) {
       lastEffects = callback(newValue, oldValue) || null;
     }
 
-    deps.length && watch(deps, watchCallback, { immediate: true });
+    deps?.length && watch(deps, watchCallback, { immediate: true });
 
-    if (!deps.length) {
-      onUpdated(() => {
-        watchCallback([], []);
-      });
+    let isMounted = false;
+    if (!deps?.length) {
+      !deps &&
+        onUpdated(() => {
+          isMounted && watchCallback([], []);
+        });
       onMounted(() => {
         const args: [any, any] = [
-          deps.length
+          deps?.length
             ? deps.map((cb) => unref(typeof cb === "function" ? cb() : cb))
             : [],
           []
         ];
         watchCallback(...args);
+        isMounted = true;
       });
     }
 
-    onBeforeUnmount(cleanup);
+    onBeforeUnmount(() => {
+      cleanup();
+      isMounted = false;
+    });
   };
 }

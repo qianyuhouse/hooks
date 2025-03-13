@@ -26,4 +26,9 @@
 
 ## [0.3.0 - 2025-03-12]  
 
-- `useSize`. 
+- `useSize`.
+
+## [0.3.1 - 2025-03-13]
+
+- `useEffect`: onUpdate called when deps is empty.  
+- `useEffectWithTarget`: make onMounted callback as a macrotask.
